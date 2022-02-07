@@ -1,10 +1,26 @@
+:root {
+  --light: #fff;
+  --very-light-grey: #f9f9f9;
+  --light-grey: #f4f2f2;
+  --inactive-grey: #e3e1e1;
+  --semi-grey: #c3c3c3;
+  --border-color: #b7b7b7;
+  --medium-grey: #999999;
+  --grey: #848383;
+  --dark-grey: #333333;
+  --dark: #000;
+  --contrast-color: #30c2d5;
+  --main-font: "Arial", sans-serif;
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 
-body {
+.body {
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--very-light-grey);
 }

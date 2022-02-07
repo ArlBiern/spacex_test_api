@@ -4,7 +4,7 @@ import Launches from "./features/launches/Launches";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <Launches />
     </div>
   );

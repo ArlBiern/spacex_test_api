@@ -1,0 +1,54 @@
+.launch_item {
+  display: flex;
+  height: 255px;
+  box-shadow: 0px 0px 2.5em rgba(0, 0, 0, 0.35);
+  border-radius: 1.25em;
+  margin-bottom: 1.5em;
+  overflow: hidden;
+  color: var(--grey);
+}
+
+.launch_minImg,
+.launch_minInfo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+}
+
+.launch_minImg {
+  background-color: var(--light-grey);
+  font-size: 14px;
+  width: 49%;
+  color: var(--border-color);
+}
+
+.launch_minInfo {
+  background-color: var(--light);
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 2.25em;
+  width: 51%;
+}
+
+.min_flightName,
+.min_flightDate {
+  font-size: 16px;
+}
+
+.min_flightTitle {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.linkButton {
+  width: 148px;
+  height: 40px;
+  border: 1px solid var(--contrast-color);
+  color: var(--contrast-color);
+  background-color: var(--light);
+  font-size: 13px;
+  border-radius: 10px;
+  margin-top: 0.75em;
+}

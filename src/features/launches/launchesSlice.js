@@ -3,19 +3,31 @@ import spacexAPI from "./launchesAPI";
 
 export const getLaunches = createAsyncThunk(
   "launches/getLaunches",
-  async () => {
-    /* try { */
-    const res = await spacexAPI.get("/");
+  async ({ limit }, { dispatch, geteState }) => {
+    const res = await spacexAPI.post("/query", {
+      query: {
+        upcoming: false || false,
+      },
+      options: {
+        limit: limit,
+        page: 1,
+        sort: {
+          date_unix: "desc",
+        },
+      },
+    });
     return res.data;
-    /* } catch (err) {
-      console.dir(err.message);
-    } */
   }
 );
+//https://github.com/r-spacex/SpaceX-API/blob/master/docs/queries.md
+//https://docs.mongodb.com/manual/tutorial/query-documents/
 
 const initialState = {
   value: [],
-  status: null,
+  status: "loading",
+  nextPage: null,
+  prevPage: null,
+  totalPages: 0,
 };
 
 const launchesSlice = createSlice({
@@ -27,7 +39,10 @@ const launchesSlice = createSlice({
     },
     [getLaunches.fulfilled]: (state, action) => {
       console.log(action.payload);
-      state.value = action.payload;
+      state.value = action.payload.docs;
+      state.nextPage = action.payload.nextPage;
+      state.prevPage = action.payload.prevPage;
+      state.totalPages = action.payload.totalPages;
       state.status = "success";
     },
     [getLaunches.rejected]: (state) => {
