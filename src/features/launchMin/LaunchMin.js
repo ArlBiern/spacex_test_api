@@ -11,7 +11,17 @@ const LaunchMin = (props) => {
 
   return (
     <div className="launch_item">
-      <div className="launch_minImg">Zdjęcie</div>
+      <div className="launch_minImg">
+        {launch.links.flickr.original.length > 0 ? (
+          <img
+            src={launch.links.flickr.original[0]}
+            alt={"Picture of flight " + launch.name + " rocket"}
+            className="min_picture"
+          />
+        ) : (
+          "zdjęcia"
+        )}
+      </div>
       <div className="launch_minInfo">
         <p className="min_flightName"> # {launch.flight_number}</p>
         <p className="min_flightTitle"> {launch.name}</p>

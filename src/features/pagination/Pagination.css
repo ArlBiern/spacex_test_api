@@ -1,0 +1,40 @@
+.pagination_cnt {
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 4em;
+  margin-right: 2em;
+  font-size: 1em;
+  color: var(--pagination-color);
+  overflow: hidden;
+}
+
+.pagination_text {
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  position: absolute;
+  right: 1em;
+}
+
+.pagination_itemsCnt {
+  display: flex;
+  position: relative;
+  right: -100vw;
+  transition: ease-in-out 0.3s;
+}
+
+.pagination_page {
+  margin: 0;
+  padding: 1px 5px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.pagination_pageActive {
+  color: var(--contrast-color);
+}
+
+.pagination_visible {
+  position: static;
+}

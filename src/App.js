@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import Launches from "./features/launches/Launches";
+import LaunchesContainer from "./features/launches/LaunchesContainer";
 
 function App() {
   return (
     <div className="app">
-      <Launches />
+      <LaunchesContainer />
     </div>
   );
 }

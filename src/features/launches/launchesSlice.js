@@ -1,16 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import spacexAPI from "./launchesAPI";
 
+const paginationLimit = 20;
+
 export const getLaunches = createAsyncThunk(
   "launches/getLaunches",
-  async ({ limit }, { dispatch, geteState }) => {
+  async (_, { getState }) => {
+    let successQuery = getState().formQuery.successQuery
+      ? [{ success: true }]
+      : [{ success: false }, { success: true }, { success: null }];
+
     const res = await spacexAPI.post("/query", {
       query: {
-        upcoming: false || false,
+        $or: successQuery,
+        date_utc: {
+          $gte: getState().formQuery.dateRange.dateGTE,
+          $lte: getState().formQuery.dateRange.dateLTE,
+        },
+        name: {
+          $regex: getState().formQuery.queryString,
+          $options: "i",
+        },
       },
       options: {
-        limit: limit,
-        page: 1,
+        limit: paginationLimit,
+        page: getState().paginationPage,
         sort: {
           date_unix: "desc",
         },
@@ -19,14 +33,10 @@ export const getLaunches = createAsyncThunk(
     return res.data;
   }
 );
-//https://github.com/r-spacex/SpaceX-API/blob/master/docs/queries.md
-//https://docs.mongodb.com/manual/tutorial/query-documents/
 
 const initialState = {
   value: [],
   status: "loading",
-  nextPage: null,
-  prevPage: null,
   totalPages: 0,
 };
 
@@ -40,8 +50,6 @@ const launchesSlice = createSlice({
     [getLaunches.fulfilled]: (state, action) => {
       console.log(action.payload);
       state.value = action.payload.docs;
-      state.nextPage = action.payload.nextPage;
-      state.prevPage = action.payload.prevPage;
       state.totalPages = action.payload.totalPages;
       state.status = "success";
     },
