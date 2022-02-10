@@ -3,6 +3,36 @@ import spacexAPI from "./launchesAPI";
 
 const paginationLimit = 20;
 
+const selectFields = [
+  "_id",
+  "crew",
+  "date_unix",
+  "date_utc",
+  "flight_number",
+  "links.flickr.original",
+  "name",
+  "rocket",
+  "success",
+  "launchpad",
+  "details",
+];
+
+const populateFields = [
+  {
+    path: "rocket",
+    select: {
+      name: 1,
+    },
+  },
+  {
+    path: "launchpad",
+    select: {
+      name: 1,
+      locality: 1,
+    },
+  },
+];
+
 export const getLaunches = createAsyncThunk(
   "launches/getLaunches",
   async (_, { getState }) => {
@@ -10,12 +40,21 @@ export const getLaunches = createAsyncThunk(
       ? [{ success: true }]
       : [{ success: false }, { success: true }, { success: null }];
 
+    let finalDateQuery =
+      getState().formQuery.dateRange.dateLTE ===
+      getState().formQuery.dateRange.dateGTE
+        ? getState().formQuery.dateRange.dateLTE.replace(
+            "00:00:00.000Z",
+            "23:59:59.000Z"
+          )
+        : getState().formQuery.dateRange.dateLTE;
+
     const res = await spacexAPI.post("/query", {
       query: {
         $or: successQuery,
         date_utc: {
           $gte: getState().formQuery.dateRange.dateGTE,
-          $lte: getState().formQuery.dateRange.dateLTE,
+          $lte: finalDateQuery,
         },
         name: {
           $regex: getState().formQuery.queryString,
@@ -28,6 +67,24 @@ export const getLaunches = createAsyncThunk(
         sort: {
           date_unix: "desc",
         },
+        select: selectFields,
+        populate: populateFields,
+      },
+    });
+    return res.data;
+  }
+);
+
+export const getLaunch = createAsyncThunk(
+  "launch/getLaunch",
+  async (launchId) => {
+    const res = await spacexAPI.post("/query", {
+      query: {
+        _id: launchId,
+      },
+      options: {
+        select: selectFields,
+        populate: populateFields,
       },
     });
     return res.data;
@@ -48,12 +105,21 @@ const launchesSlice = createSlice({
       state.status = "loading";
     },
     [getLaunches.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.value = action.payload.docs;
       state.totalPages = action.payload.totalPages;
       state.status = "success";
     },
     [getLaunches.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [getLaunch.pending]: (state) => {
+      state.status = "loading";
+    },
+    [getLaunch.fulfilled]: (state, action) => {
+      state.value.push(action.payload.docs[0]);
+      state.status = "success";
+    },
+    [getLaunch.rejected]: (state) => {
       state.status = "failed";
     },
   },

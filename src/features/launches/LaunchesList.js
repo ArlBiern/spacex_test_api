@@ -29,7 +29,21 @@ const LaunchesList = () => {
       return <div className="launches_listCnt">Something goes wrong</div>;
     }
   };
-  return <div className="launches_listCnt">{renderLaunchList()}</div>;
+
+  const renderNoData = () => {
+    return (
+      <div className="launches_listCnt">
+        <h3 className="launches_noData">
+          Brak danych dla wybranych opcji filtrowania.
+        </h3>{" "}
+      </div>
+    );
+  };
+  return (
+    <div className="launches_listCnt">
+      {launches.length !== 0 ? renderLaunchList() : renderNoData()}
+    </div>
+  );
 };
 
 export default LaunchesList;

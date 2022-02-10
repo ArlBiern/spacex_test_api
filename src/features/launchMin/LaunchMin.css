@@ -1,7 +1,7 @@
 .launch_item {
   display: flex;
   height: 255px;
-  box-shadow: 0px 0px 2.5em rgba(0, 0, 0, 0.35);
+  box-shadow: var(--box-shadow);
   border-radius: 1.25em;
   margin-bottom: 1.5em;
   overflow: hidden;
@@ -43,14 +43,28 @@
 }
 
 .linkButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 148px;
   height: 40px;
   border: 1px solid var(--contrast-color);
-  color: var(--contrast-color);
   background-color: var(--light);
+  color: var(--contrast-color);
   font-size: 13px;
   border-radius: 10px;
   margin-top: 0.75em;
+  text-align: center;
+  text-decoration: none;
+  transition: all ease-in-out 0.2s;
+}
+
+.linkButton:hover {
+  text-decoration: none;
+  color: var(--light);
+  font-weight: 700;
+  background-color: var(--contrast-color);
+  letter-spacing: 1px;
 }
 
 .min_picture {

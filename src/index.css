@@ -12,6 +12,7 @@
   --dark: #000;
   --contrast-color: #30c2d5;
   --main-font: "Arial", sans-serif;
+  --box-shadow: 0px 0px 2.5em rgba(0, 0, 0, 0.35);
 }
 
 * {

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./LaunchMin.css";
 
 const LaunchMin = (props) => {
@@ -19,14 +20,16 @@ const LaunchMin = (props) => {
             className="min_picture"
           />
         ) : (
-          "zdjęcia"
+          "brak zdjęć"
         )}
       </div>
       <div className="launch_minInfo">
         <p className="min_flightName"> # {launch.flight_number}</p>
         <p className="min_flightTitle"> {launch.name}</p>
         <p className="min_flightDate">{formatedDate}</p>
-        <button className="linkButton">więcej &gt;</button>
+        <Link className="linkButton" to={`/${launch.id}`}>
+          więcej &gt;
+        </Link>
       </div>
     </div>
   );
