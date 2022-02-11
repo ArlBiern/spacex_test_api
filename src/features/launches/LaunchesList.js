@@ -1,14 +1,20 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import LaunchMin from "../launchMin/LaunchMin";
-import { getLaunches } from "./launchesSlice";
+import {
+  getLaunches,
+  launchesSelector,
+  requestSelector,
+} from "./launchesSlice";
+
 import Loader from "../loader/Loader";
+import PageNotFound from "../notFound/PageNotFound";
 
 const LaunchesList = () => {
   const dispatch = useDispatch();
 
-  const launches = useSelector((state) => state.launches.value);
-  const requestStatus = useSelector((state) => state.launches.status);
+  const launches = useSelector(launchesSelector);
+  const requestStatus = useSelector(requestSelector);
 
   useEffect(() => {
     dispatch(getLaunches());
@@ -22,11 +28,21 @@ const LaunchesList = () => {
         </div>
       );
     } else if (requestStatus === "success") {
-      return launches.map((launch) => {
-        return <LaunchMin key={launch.id} launch={launch} />;
-      });
+      if (launches.length === 0) {
+        return renderNoData();
+      } else {
+        return launches.map((launch) => {
+          return <LaunchMin key={launch.id} launch={launch} />;
+        });
+      }
     } else if (requestStatus === "failed") {
-      return <div className="launches_listCnt">Something goes wrong</div>;
+      return (
+        <PageNotFound
+          message={
+            "Prawdopodobnie masz problem z internetem lub jest inny problem z pobraniem danych. Sprawdź połączenie, odśwież stronę lub spróbuj ponownie wejść na stronę główną."
+          }
+        />
+      );
     }
   };
 
@@ -35,13 +51,14 @@ const LaunchesList = () => {
       <div className="launches_listCnt">
         <h3 className="launches_noData">
           Brak danych dla wybranych opcji filtrowania.
-        </h3>{" "}
+        </h3>
       </div>
     );
   };
+
   return (
-    <div className="launches_listCnt">
-      {launches.length !== 0 ? renderLaunchList() : renderNoData()}
+    <div className="launches_listCnt" data-testid="launches_listCnt">
+      {renderLaunchList()}
     </div>
   );
 };

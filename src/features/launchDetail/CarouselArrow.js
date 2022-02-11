@@ -20,6 +20,7 @@ const CarouselArrow = ({
       }`}
       onClick={onSlideChange}
       data-direction={direction}
+      data-testid={direction}
     >
       <g transform="matrix(1 0 0 1 -46 -723 )">
         <path

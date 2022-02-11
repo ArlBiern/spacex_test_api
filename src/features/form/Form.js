@@ -10,6 +10,7 @@ const Form = () => {
   const dispatch = useDispatch();
   const checkboxInput = useRef();
   const datePicker = useRef();
+  const labelChecbox = useRef();
 
   const dataRangeState = useSelector((state) => state.formQuery.dateRange);
   const successQueryState = useSelector(
@@ -59,11 +60,24 @@ const Form = () => {
 
   const checkboxChangeHandle = (e) => {
     setSuccessQuerry(!successQuery);
+
+    labelChecbox.current.dataset.checked = !successQuery;
+  };
+
+  const checkQueryString = (query) => {
+    const testResult = /^[a-z0-9A-Z -]+$/.test(query[0]);
+    if (testResult || query.length === 0) {
+      setQueryString(query);
+    }
   };
 
   return (
     <div>
-      <form className="launches_form" onSubmit={formSubmitHandle}>
+      <form
+        className="launches_form"
+        onSubmit={formSubmitHandle}
+        data-testid="form"
+      >
         <div className="form_element">
           <label className="form_label">Nazwa lotu</label>
           <input
@@ -73,13 +87,18 @@ const Form = () => {
             placeholder="Wpisz nazwę"
             value={queryString}
             onChange={(e) => {
-              setQueryString(e.target.value);
+              checkQueryString(e.target.value);
             }}
+            data-testid="queryInput"
           />
         </div>
         <div className="form_element">
           <label className="form_label">Data lotu</label>
-          <DateRangePicker onChange={setDates} ref={datePicker} />
+          <DateRangePicker
+            onChange={setDates}
+            ref={datePicker}
+            data-testid="dateInput"
+          />
         </div>
         <div className="form_element">
           <input
@@ -88,9 +107,19 @@ const Form = () => {
             ref={checkboxInput}
             checked={successQuery}
             onChange={checkboxChangeHandle}
+            data-testid="successInput"
           />
-          <label htmlFor="cb1" data-checked={false}></label>
-          <p className="checkbox_text" onClick={checkboxChangeHandle}>
+          <label
+            htmlFor="cb1"
+            data-checked={false}
+            data-testid="cb1"
+            ref={labelChecbox}
+          ></label>
+          <p
+            className="checkbox_text"
+            onClick={checkboxChangeHandle}
+            data-testid="checkbox_text"
+          >
             Pokaż tylko udane loty
           </p>
         </div>

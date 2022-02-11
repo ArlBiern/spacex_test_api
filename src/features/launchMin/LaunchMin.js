@@ -11,7 +11,7 @@ const LaunchMin = (props) => {
   ).slice(-2)}-${("0" + date.getDate()).slice(-2)}`;
 
   return (
-    <div className="launch_item">
+    <div className="launch_item" data-testid="launch_item">
       <div className="launch_minImg">
         {launch.links.flickr.original.length > 0 ? (
           <img
@@ -25,7 +25,10 @@ const LaunchMin = (props) => {
       </div>
       <div className="launch_minInfo">
         <p className="min_flightName"> # {launch.flight_number}</p>
-        <p className="min_flightTitle"> {launch.name}</p>
+        <p className="min_flightTitle" data-testid="min_flightTitle">
+          {" "}
+          {launch.name}
+        </p>
         <p className="min_flightDate">{formatedDate}</p>
         <Link className="linkButton" to={`/${launch.id}`}>
           więcej &gt;

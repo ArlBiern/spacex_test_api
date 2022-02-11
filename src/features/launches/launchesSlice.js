@@ -125,4 +125,7 @@ const launchesSlice = createSlice({
   },
 });
 
+export const launchesSelector = (state) => state.launches.value;
+export const requestSelector = (state) => state.launches.status;
+
 export default launchesSlice.reducer;

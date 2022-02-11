@@ -26,6 +26,7 @@ const Pagination = () => {
           key={el + 1}
           data-page={el + 1}
           onClick={showPaginationPage}
+          data-testid="pagination_page"
         >
           {el + 1}
         </p>
@@ -53,6 +54,7 @@ const Pagination = () => {
         className="pagination_text"
         onClick={paginationVisibility}
         ref={paginationText}
+        data-testid="pagination_text"
       >
         załaduj więcej &gt;
       </p>

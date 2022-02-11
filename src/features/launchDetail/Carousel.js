@@ -98,7 +98,7 @@ const Carousel = ({ launch }) => {
     <div className="detailCarousel_cnt" ref={mainDiv}>
       {renderMainPic()}
       {renderNavigation()}
-      <p className="carousel_slidesCount">
+      <p className="carousel_slidesCount" data-testid="carousel_countParagraph">
         {launch && launch.links.flickr.original[0]
           ? `${currentActiveImage} / ${picturesCount}`
           : ""}
