@@ -1,6 +1,6 @@
 # SpaceX test Api
 
-**Projekt można zobaczyć na:** [click here to see the result.](https://kombajn27.github.io/spacex_test_api/)
+**Projekt można zobaczyć na:** [GitHub Pages](https://arlbiern.github.io/spacex_test_api/)
 
 ## Opis
 
