@@ -69,8 +69,8 @@ input[id="cb1"] + label {
   display: inline-block;
   width: 24px;
   height: 24px;
-  border: 2px solid var(--border-color);
-  border-radius: 5px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 6px;
   cursor: pointer;
   background-color: var(--light);
 }
@@ -113,4 +113,84 @@ input[id="cb1"] {
   color: var(--light);
   font-size: 16px;
   font-weight: 700;
+}
+
+@media only screen and (max-width: 1050px) {
+  .launches_form {
+    flex-wrap: wrap;
+    padding-bottom: 0em;
+  }
+
+  .form_element {
+    width: 48.5%;
+    margin-bottom: 2em;
+  }
+
+  .form_element:nth-child(3) {
+    padding-bottom: 0px;
+    align-self: center;
+  }
+
+  .form_submit {
+    bottom: 0px;
+  }
+
+  .rs-anim-fade {
+    border: 1px solid green;
+    position: absolute !important;
+    top: 45px !important;
+    left: 25vw !important;
+    transform: scale(0.8);
+  }
+
+  .rs-picker-daterange-panel {
+    border: 1px solid red;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .rs-anim-fade {
+    left: 20vw !important;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .launches_form {
+    margin-bottom: 3em;
+  }
+
+  .rs-anim-fade {
+    left: 15vw !important;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .rs-anim-fade {
+    left: 10vw !important;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .form_element {
+    width: 100%;
+    margin-bottom: 1.5em;
+  }
+
+  .launches_form {
+    margin-bottom: 0.25em;
+  }
+
+  .rs-anim-fade {
+    top: 92px !important;
+    left: -80px !important;
+    transform: scale(0.6);
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .rs-anim-fade {
+    top: 82px !important;
+    left: -90px !important;
+    transform: scale(0.55);
+  }
 }

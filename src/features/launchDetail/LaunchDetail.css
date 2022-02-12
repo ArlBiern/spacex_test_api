@@ -162,6 +162,7 @@
 
 .carousel_slidesCount {
   font-size: 16px;
+  color: var(--medium-grey);
 }
 
 .detail_descriptionCnt {
@@ -169,7 +170,119 @@
 }
 
 .detail_description {
-  padding: 2em 2em 4em 3em;
+  padding: 2em 3em 3.5em 3em;
   font-size: 16px;
   color: var(--pagination-color);
+}
+
+@media only screen and (max-width: 1150px) {
+  .carouselMinPic_div {
+    min-width: 17.75%;
+  }
+}
+
+@media only screen and (max-width: 1020px) {
+  .carouselMinPic_div {
+    min-width: 17.4%;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .carouselMinPic_div {
+    min-width: 17.2%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .carouselMinPic_div {
+    min-width: 16.75%;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .detail_mainDataItem,
+  .detailCarousel_cnt,
+  .detail_descriptionCnt {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .detail_mainDataItem {
+    padding: 2em 2em 4em 2em;
+  }
+
+  .detail_mainDataItem:nth-of-type(1) {
+    margin-right: 10px;
+  }
+
+  .detail_mainDataItem:nth-of-type(2) {
+    margin-left: 10px;
+  }
+
+  .detailCarousel_cnt {
+    margin-top: 2em;
+    overflow: hidden;
+    padding-bottom: 0;
+    position: relative;
+  }
+
+  .carousel_minPicCnt {
+    display: none;
+  }
+
+  .carousel_slidesCount {
+    font-size: 24px;
+    position: absolute;
+    bottom: 70px;
+  }
+
+  .carousel_switch {
+    height: 50px;
+    margin: 0 4em;
+  }
+
+  .carousel_bigPic {
+    object-fit: contain;
+    height: 255px;
+  }
+
+  .carousel_navigationCnt {
+    height: 175px;
+    position: relative;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .detail_header {
+    margin-bottom: 2em;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .detail_header {
+    margin-bottom: 1em;
+  }
+
+  .detail_mainData {
+    flex-direction: column;
+  }
+
+  .detail_mainDataItem {
+    width: auto;
+  }
+  .detail_mainDataItem:nth-of-type(1) {
+    margin-right: 20px;
+  }
+
+  .detail_mainDataItem:nth-of-type(2) {
+    margin-left: 20px;
+  }
+
+  .detailCarousel_cnt {
+    margin-top: 1em;
+  }
+
+  .detail_description {
+    padding: 2em 2em 3em 2em;
+  }
 }
