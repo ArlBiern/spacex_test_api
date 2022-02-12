@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/spacex_test_api/static/css/main.e58c12ba.css",
+    "main.js": "/spacex_test_api/static/js/main.6fa87741.js",
+    "index.html": "/spacex_test_api/index.html",
+    "main.e58c12ba.css.map": "/spacex_test_api/static/css/main.e58c12ba.css.map",
+    "main.6fa87741.js.map": "/spacex_test_api/static/js/main.6fa87741.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e58c12ba.css",
+    "static/js/main.6fa87741.js"
+  ]
+}
